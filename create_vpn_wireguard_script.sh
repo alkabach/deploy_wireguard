@@ -56,7 +56,6 @@ Address = ${WG_SERVER_IP}/24
 ListenPort = ${WG_SERVER_PORT}
 PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o $main_interface -j MASQUERADE
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o $main_interface -j MASQUERADE
-
 [Peer]
 PublicKey = ${WG_CLIENT_PUBLIC_KEY}
 AllowedIPs = ${WG_CLIENT_IP}/32
