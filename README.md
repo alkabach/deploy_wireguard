@@ -1,5 +1,5 @@
 # deploy_wireguard
-Script to deploy wireguard server to any machine on Ubuntu from scratch
+Script to deploy wireguard server to Ubuntu 22 version from scratch
 
 One line command
 
