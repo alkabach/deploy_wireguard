@@ -1,9 +1,21 @@
 #!/bin/bash
 set -e
 
+#Default server configuration
 sudo apt update
+sudo apt upgrade
 sudo apt install -y wireguard
 sudo apt install iptables
+
+#Install Jail with default config
+sudo apt install fail2ban
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+echo -e "\033[0;31;40m!!!If needed, PLEASE CONFIGURE Fail2Ban protection with vi /etc/fail2ban/jail.local \033[0m"
+#Default server configuration -- END
 
 #Extract data to forward internet traffic to internet
 default_route=$(ip route | grep "default via")
@@ -32,7 +44,6 @@ wg genkey | tee server_private.key | wg pubkey > server_public.key
 #generate client public and private keys
 wg genkey | tee client_private.key | wg pubkey > client_public.key
 cd ..
-
 
 
 # Variables
